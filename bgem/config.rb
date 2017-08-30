@@ -1,0 +1,1 @@
+output 'lib/syn.rb'
