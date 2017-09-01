@@ -9,3 +9,7 @@ def string= object
               ":#{string}"
             end
 end
+
+def self.parsable? string
+  string.start_with? ':'
+end
