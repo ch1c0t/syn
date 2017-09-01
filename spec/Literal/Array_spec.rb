@@ -21,4 +21,17 @@ describe Syn::Literal::Array do
 
     assert { @literal.to_s == "[some_name, :some_symbol, \"some string\"]" }
   end
+
+  describe '.parsable?' do
+    it 'is true when the argument is parsable' do
+      assert { described_class.parsable? "[some_name, :some_symbol, \"some string\"]" }
+      assert { described_class.parsable? "[]" }
+    end
+
+    it 'is false when the argument is unparsable' do
+      assert { not described_class.parsable? "[some_name, :some_symbol, \"some string\"" }
+      assert { not described_class.parsable? "some_name, :some_symbol, \"some string\"]" }
+      assert { not described_class.parsable? "[" }
+    end
+  end
 end
