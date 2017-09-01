@@ -11,4 +11,16 @@ describe Syn::Literal::Name do
     assert { true_name.to_s == 'true' }
     assert { variable_name.to_s == 'some_variable' }
   end
+
+  describe '.parsable?' do
+    it 'is true when the argument is parsable' do
+      assert { described_class.parsable? "some_name" }
+    end
+
+    it 'is false when the argument is unparsable' do
+      assert { not described_class.parsable? "\"string\"" }
+      assert { not described_class.parsable? ":symbol" }
+      assert { not described_class.parsable? "[array]" }
+    end
+  end
 end
