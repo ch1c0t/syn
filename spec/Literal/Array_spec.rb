@@ -34,4 +34,27 @@ describe Syn::Literal::Array do
       assert { not described_class.parsable? "[" }
     end
   end
+
+  describe '.parse' do
+    it 'can parse parsable' do
+      literal = described_class.parse "[some_name, :some_symbol, \"some string\"]"
+      
+      name = literal[0]
+      symbol = literal[1]
+      string = literal[2]
+
+      assert { name.is_a? Syn::Literal::Name }
+      assert { name.to_s == "some_name" }
+      assert { symbol.is_a? Syn::Literal::Symbol }
+      assert { symbol.to_s == ":some_symbol" }
+      assert { string.is_a? Syn::Literal::String }
+      assert { string.to_s == "\"some string\"" }
+    end
+
+    it 'returns nil for unparsable' do
+      assert { described_class.parse("[some_name, :some_symbol, \"some string\"").nil? }
+      assert { described_class.parse("some_name, :some_symbol, \"some string\"]").nil? }
+      assert { described_class.parse("[").nil?}
+    end
+  end
 end
