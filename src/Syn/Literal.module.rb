@@ -1,5 +1,3 @@
-attr_reader :string
-
 def string= object
   @string = object.to_s
 end
