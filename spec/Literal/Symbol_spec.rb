@@ -30,4 +30,20 @@ describe Syn::Literal::Symbol do
       assert { not described_class.parsable? "[array]" }
     end
   end
+
+  describe '.parse' do
+    it 'can parse parsable' do
+      literal = described_class.parse ":symbol"
+      assert { literal.to_s == ':symbol' }
+
+      literal = described_class.parse ':"with spaces"'
+      assert { literal.to_s == ':"with spaces"' }
+    end
+
+    it 'returns nil for unparsable' do
+      assert { described_class.parse("\"string\"").nil? }
+      assert { described_class.parse("some_name").nil? }
+      assert { described_class.parse("[array]").nil? }
+    end
+  end
 end
