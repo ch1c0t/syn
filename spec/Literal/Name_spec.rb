@@ -23,4 +23,17 @@ describe Syn::Literal::Name do
       assert { not described_class.parsable? "[array]" }
     end
   end
+
+  describe '.parse' do
+    it 'can parse parsable' do
+      literal = described_class.parse 'some_name'
+      assert { literal.to_s == 'some_name' }
+    end
+
+    it 'returns nil for unparsable' do
+      assert { described_class.parse("\"string\"").nil? }
+      assert { described_class.parse(":symbol").nil? }
+      assert { described_class.parse("[array]").nil? }
+    end
+  end
 end
