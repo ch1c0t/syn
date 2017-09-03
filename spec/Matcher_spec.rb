@@ -9,20 +9,12 @@ describe Syn::Matcher do
 
   describe 'default' do
     before do
-      @matcher = @Matcher.new 'any string'
+      @matcher = @Matcher.new 'any string'.chars
     end
 
     it 'is false for any string'do
       assert { not @matcher.ok? }
-    end
-
-    it '#string' do
-      assert { @matcher.string == 'any string' }
-    end
-
-    it 'has nils in #match and #postfix when it is not ok' do
-      assert { @matcher.match.nil? }
-      assert { @matcher.postfix.nil? }
+      assert { @matcher.range.nil? }
     end
   end
 end
