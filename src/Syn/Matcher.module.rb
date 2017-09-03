@@ -9,8 +9,16 @@ def ok?
   @ok
 end
 
+def to_s
+  @chars[range].join
+end
+
 attr_reader :range, :error
 
-# Parse chars; set either a range or an error.
+# Parse chars; set @ok, and either @range or @error.
 def parse
+end
+
+def first_character
+  @chars[@start]
 end
