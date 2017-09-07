@@ -15,13 +15,10 @@ def self.parsable? string
 end
 
 def self.parse string
-  if parsable? string
+  node = Parser::CurrentRuby.parse string
+  if node.type == :sym
     literal = new
-    literal.string = if string.match? /\s/
-                       string[2..-2]
-                     else
-                       string[1..-1]
-                     end
+    literal.string = node.children.first
     literal
   end
 end
