@@ -36,4 +36,18 @@ describe Syn::Literal::Name do
       assert { described_class.parse("[array]").nil? }
     end
   end
+
+  describe '.from_node' do
+    it 'does create a literal from an appropriate send node' do
+      node = Parser::CurrentRuby.parse 'na'
+      literal = described_class.from_node node
+
+      assert { literal.to_s == 'na' }
+    end
+
+    it 'does not create a literal from innapropriate nodes' do
+      node = Parser::CurrentRuby.parse 'call name'
+      assert { described_class.from_node(node).nil? }
+    end
+  end
 end
