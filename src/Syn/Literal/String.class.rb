@@ -9,9 +9,10 @@ def self.parsable? string
 end
 
 def self.parse string
-  if parsable? string
+  node = Parser::CurrentRuby.parse string
+  if node.type == :str
     literal = new
-    literal.string = string[1..-2]
+    literal.string = node.children.first
     literal
   end
 end
