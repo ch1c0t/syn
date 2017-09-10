@@ -1,9 +1,5 @@
 include Literal
 
-def self.parsable? string
-  string.match? /\A\w+\z/
-end
-
 def self.parse string
   from_node Parser::CurrentRuby.parse string
 end
