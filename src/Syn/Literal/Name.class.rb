@@ -5,11 +5,7 @@ def self.parsable? string
 end
 
 def self.parse string
-  if parsable? string
-    literal = new
-    literal.string = string
-    literal
-  end
+  from_node Parser::CurrentRuby.parse string
 end
 
 def self.from_node node
