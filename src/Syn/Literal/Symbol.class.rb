@@ -10,10 +10,6 @@ def string= object
             end
 end
 
-def self.parsable? string
-  string.start_with? ':'
-end
-
 def self.from_node node
   if node.type == :sym
     literal = new
