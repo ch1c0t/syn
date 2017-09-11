@@ -1,9 +1,5 @@
 include Literal
 
-def self.parse string
-  from_node Parser::CurrentRuby.parse string
-end
-
 def self.from_node node
   size = node.children.size
   first = node.children[0]
