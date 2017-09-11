@@ -14,8 +14,7 @@ def self.parsable? string
   string.start_with? ':'
 end
 
-def self.parse string
-  node = Parser::CurrentRuby.parse string
+def self.from_node node
   if node.type == :sym
     literal = new
     literal.string = node.children.first
